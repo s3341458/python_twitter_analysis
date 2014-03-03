@@ -24,6 +24,10 @@ consumer_secret="7pF6PH6PFGeBLlAHsxMbTGinw2bfYIw4aF6vwWsLok"
 access_token="781737260-uJejBgaVA8NDGxj6oipjlp6K7fl89fvQdJQS6357"
 access_token_secret="TZUCXTGg2SRBplHPaTs0aht2gGIsIwaRX1v6hBRSfJrzj"
 
+
+positiveEmoticons = ":),:-),:),:D,=)"
+negativeEmoticons = ":(, :-(, : ("
+
 class StdOutListener(StreamListener):
     """ A listener handles tweets are the received from the stream.
 This is a basic listener that just prints received tweets to stdout.
@@ -60,11 +64,13 @@ This is a basic listener that just prints received tweets to stdout.
 
 
 if __name__ == '__main__':
-    l = FileOutListener('negativeTweetsForTraining')
+    l = FileOutListener('positiveTweetsForTrainingBig')
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
-
+ 
     stream = Stream(auth, l)
-#     stream.filter(track=[':),:-),:),:D,=)'])
-    stream.filter(track=[':(, :-(, : ('])
+#     stream.filter(track=[positiveEmoticons])
+    stream.filter(track=[positiveEmoticons])
+
+    
 
